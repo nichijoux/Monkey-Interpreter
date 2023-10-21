@@ -66,6 +66,7 @@ public class BuiltInEnvironment extends Environment {
                 break;
             case HASH_OBJECT:
                 integerObject.value = (long) ((HashObject) object).hashMap.size();
+                break;
             default:
                 return new ErrorObject(String.format("argument to {size} not supported, get %s", object.getType()));
         }
