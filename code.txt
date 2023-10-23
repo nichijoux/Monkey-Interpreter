@@ -1,0 +1,17 @@
+let array = [1,2,3,"hello world!"]
+
+let darray = [array,[1,2,3,4],["hello","world"]];
+
+let foreach = function(array){
+	let i = 0;
+	let size = array.size();
+	while(i < size){
+		puts(array[i]);
+		i+=1;
+	}
+	return null;
+}
+
+array.foreach();
+
+darray.foreach();

@@ -218,9 +218,13 @@ public class Parser {
         // 前移token
         advanceToken();
         // 解析return的表达式
-        statement.returnValue = parseExpression(OperatorPriority.LOWEST);
-        if (nextTokenIs(TokenType.SEMICOLON)) {
-            advanceToken();
+        if (currentTokenIs(TokenType.SEMICOLON)) {
+            statement.returnValue = NullLiteral.instance;
+        } else {
+            statement.returnValue = parseExpression(OperatorPriority.LOWEST);
+            if (nextTokenIs(TokenType.SEMICOLON)) {
+                advanceToken();
+            }
         }
         return statement;
     }
@@ -601,7 +605,7 @@ public class Parser {
         // 初始化while语句
         WhileExpression whileExpression = new WhileExpression();
         whileExpression.token = currentToken;
-        // while语句后应该跟着左括号
+        // while关键字后应该跟着左括号
         if (!expectNextToken(TokenType.LPAREN)) {
             return null;
         }
